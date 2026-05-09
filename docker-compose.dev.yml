@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  bookvid-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DATABASE_PATH=/app/data/bookvid.db
+      - UPLOAD_PATH=/app/uploads
+      - CLIENT_URL=http://localhost:5173
+      - API_URL=http://localhost:3000
+      - JWT_SECRET=${JWT_SECRET:-dev_jwt_secret_key}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - RESEMBLE_API_KEY=${RESEMBLE_API_KEY}
+      - RESEMBLE_PROJECT_ID=${RESEMBLE_PROJECT_ID}
+      - RESEMBLE_VOICE_ID=${RESEMBLE_VOICE_ID}
+      - STABILITY_API_KEY=${STABILITY_API_KEY}
+      - MAX_FILE_SIZE=${MAX_FILE_SIZE:-50000000}
+      - CACHE_MAX_SIZE=${CACHE_MAX_SIZE:-1000}
+      - CACHE_DEFAULT_TTL=${CACHE_DEFAULT_TTL:-3600}
+      - SESSION_TTL=${SESSION_TTL:-86400}
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/client/node_modules
+      - /app/server/node_modules
+      - bookvid_dev_data:/app/data
+      - bookvid_dev_uploads:/app/uploads
+    restart: unless-stopped
+    command: npm run dev
+
+volumes:
+  bookvid_dev_data:
+    driver: local
+  bookvid_dev_uploads:
+    driver: local
+
+networks:
+  default:
+    name: bookvid-dev-network

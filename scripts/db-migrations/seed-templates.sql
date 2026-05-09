@@ -1,0 +1,14 @@
+-- Seed data for templates table
+-- Basic video templates for personal project demonstration
+
+INSERT OR IGNORE INTO templates (id, name, description, category, config_json, preview_image_path) VALUES
+('template-001', 'Classic Book Trailer', 'Traditional book trailer with elegant typography and smooth transitions', 'trailer', '{"duration": 60, "style": "classic", "transitions": "fade", "typography": "serif"}', '/templates/classic-trailer.jpg'),
+('template-002', 'Modern Minimalist', 'Clean, modern design with bold typography and geometric elements', 'promotional', '{"duration": 45, "style": "modern", "transitions": "slide", "typography": "sans-serif"}', '/templates/modern-minimal.jpg'),
+('template-003', 'Fantasy Adventure', 'Epic template with dramatic effects perfect for fantasy and adventure books', 'genre-specific', '{"duration": 75, "style": "epic", "transitions": "dramatic", "typography": "fantasy"}', '/templates/fantasy-adventure.jpg'),
+('template-004', 'Romance Elegant', 'Soft, romantic template with warm colors and gentle animations', 'genre-specific', '{"duration": 50, "style": "romantic", "transitions": "soft", "typography": "script"}', '/templates/romance-elegant.jpg'),
+('template-005', 'Thriller Dark', 'Dark, suspenseful template with sharp contrasts and tension-building effects', 'genre-specific', '{"duration": 55, "style": "dark", "transitions": "sharp", "typography": "bold"}', '/templates/thriller-dark.jpg'),
+('template-006', 'Non-Fiction Professional', 'Professional template suitable for business and educational books', 'non-fiction', '{"duration": 40, "style": "professional", "transitions": "clean", "typography": "corporate"}', '/templates/nonfiction-pro.jpg'),
+('template-007', 'Children''s Playful', 'Colorful, animated template perfect for children''s books', 'genre-specific', '{"duration": 35, "style": "playful", "transitions": "bounce", "typography": "fun"}', '/templates/children-playful.jpg'),
+('template-008', 'Sci-Fi Futuristic', 'High-tech template with futuristic elements and digital effects', 'genre-specific', '{"duration": 65, "style": "futuristic", "transitions": "digital", "typography": "tech"}', '/templates/scifi-future.jpg'),
+('template-009', 'Historical Classic', 'Vintage-inspired template with classical elements and aged textures', 'genre-specific', '{"duration": 70, "style": "vintage", "transitions": "classic", "typography": "traditional"}', '/templates/historical-classic.jpg'),
+('template-010', 'Quick Teaser', 'Short, punchy template for social media teasers and quick promotions', 'social', '{"duration": 15, "style": "dynamic", "transitions": "quick", "typography": "impact"}', '/templates/quick-teaser.jpg');

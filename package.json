@@ -1,0 +1,52 @@
+{
+  "name": "bookvid-ai",
+  "version": "1.0.0",
+  "description": "AI-Powered Video Creation for Books",
+  "main": "index.js",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "start": "cd server && npm start",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "test": "npm run test:client && npm run test:server",
+    "test:client": "cd client && npm run test:run",
+    "test:server": "cd server && npm test",
+    "lint": "npm run lint:client && npm run lint:server",
+    "lint:client": "cd client && npm run lint",
+    "lint:server": "cd server && npm run lint",
+    "clean": "rm -rf node_modules client/node_modules server/node_modules client/dist server/dist",
+    "install:all": "npm install",
+    "docker:build": "docker build -t bookvid-ai .",
+    "docker:run": "docker run -p 3000:3000 --env-file .env bookvid-ai",
+    "docker:dev": "docker-compose -f docker-compose.dev.yml up --build",
+    "docker:prod": "docker-compose up --build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "ai",
+    "video",
+    "books",
+    "marketing",
+    "automation"
+  ],
+  "author": "BookVid AI Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/bookvid-ai.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/bookvid-ai/issues"
+  },
+  "homepage": "https://bookvid.ai"
+}

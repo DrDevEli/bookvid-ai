@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  bookvid-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DATABASE_PATH=/app/data/bookvid.db
+      - UPLOAD_PATH=/app/uploads
+      - CLIENT_URL=http://localhost:3000
+      - API_URL=http://localhost:3000
+      - JWT_SECRET=${JWT_SECRET:-your_jwt_secret_key_here}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - RESEMBLE_API_KEY=${RESEMBLE_API_KEY}
+      - RESEMBLE_PROJECT_ID=${RESEMBLE_PROJECT_ID}
+      - RESEMBLE_VOICE_ID=${RESEMBLE_VOICE_ID}
+      - STABILITY_API_KEY=${STABILITY_API_KEY}
+      - MAX_FILE_SIZE=${MAX_FILE_SIZE:-50000000}
+      - CACHE_MAX_SIZE=${CACHE_MAX_SIZE:-1000}
+      - CACHE_DEFAULT_TTL=${CACHE_DEFAULT_TTL:-3600}
+      - SESSION_TTL=${SESSION_TTL:-86400}
+    volumes:
+      - bookvid_data:/app/data
+      - bookvid_uploads:/app/uploads
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/api/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  bookvid_data:
+    driver: local
+  bookvid_uploads:
+    driver: local
+
+networks:
+  default:
+    name: bookvid-network
